@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022
+  ~ David de Andrés and Juan Carlos Ruiz
+  ~ Development of apps for mobile devices
+  ~ Universitat Politècnica de València
+  -->
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="48dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTopbar"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivPicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/picture_description"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/clTopbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clTopbar"
+            tools:src="@drawable/unknown_person" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/clTopbar"
+            app:layout_constraintEnd_toStartOf="@id/tvFirstName"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Mr" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/clTopbar"
+            app:layout_constraintEnd_toStartOf="@id/tvSecondName"
+            app:layout_constraintStart_toEndOf="@id/tvTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="David" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSecondName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAllCaps="true"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/clTopbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/tvFirstName"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Andrés" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toBottomOf="@+id/clTopbar"
+            tools:text="Campus de Vera S/N" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddress"
+            tools:text="Valencia, Valencia 46022" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toBottomOf="@+id/tvCity"
+            tools:text="Spain" />
+
+        <ImageView
+            android:id="@+id/ivEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/email"
+            android:src="@drawable/ic_email"
+            app:layout_constraintBottom_toBottomOf="@id/tvEmail"
+            app:layout_constraintEnd_toStartOf="@id/tvEmail"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toTopOf="@id/tvEmail" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/ivEmail"
+            app:layout_constraintTop_toBottomOf="@+id/tvCountry"
+            tools:text="ddandres@disca.upv.es" />
+
+        <ImageView
+            android:id="@+id/ivPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/phone"
+            android:src="@drawable/ic_phone"
+            app:layout_constraintBottom_toBottomOf="@id/tvPhone"
+            app:layout_constraintEnd_toStartOf="@id/tvPhone"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toTopOf="@id/tvPhone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/ivPhone"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+            tools:text="963 877 007" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
