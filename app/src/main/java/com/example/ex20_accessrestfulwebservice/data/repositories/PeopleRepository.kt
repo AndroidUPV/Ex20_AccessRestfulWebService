@@ -7,12 +7,14 @@
 
 package com.example.ex20_accessrestfulwebservice.data.repositories
 
-import com.example.ex20_accessrestfulwebservice.data.datasources.PeopleRetrofitDataSource
-import com.example.ex20_accessrestfulwebservice.model.Person
+import com.example.ex20_accessrestfulwebservice.model.People
 
-object PeopleRepository {
-
-    suspend fun getPeople(): List<Person> =
-        PeopleRetrofitDataSource.getInstance().getPeople()
-
+/**
+ * Interface declaring the methods that the Repository exposes to ViewModels.
+ */
+interface PeopleRepository {
+    /**
+     * Returns a list of 10 randomly generated persons.
+     */
+    suspend fun getPeople(dataSource: ConnectionLibrary): Result<People>
 }

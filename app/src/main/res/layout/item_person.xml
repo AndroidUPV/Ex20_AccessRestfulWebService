@@ -4,7 +4,7 @@
   ~ Development of apps for mobile devices
   ~ Universitat Politècnica de València
   -->
-
+<!--Displays the data and picture of a person-->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -40,57 +40,31 @@
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:autoSizeMaxTextSize="48sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
             android:textAppearance="?attr/textAppearanceTitleLarge"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/clTopbar"
-            app:layout_constraintEnd_toStartOf="@id/tvFirstName"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/ivPicture"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Mr" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textAppearance="?attr/textAppearanceTitleLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/clTopbar"
-            app:layout_constraintEnd_toStartOf="@id/tvSecondName"
-            app:layout_constraintStart_toEndOf="@id/tvTitle"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="David" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSecondName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textAllCaps="true"
-            android:textAppearance="?attr/textAppearanceTitleLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="@id/clTopbar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/tvFirstName"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Andrés" />
+            tools:text="Mr David de Andrés" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivPicture"
@@ -102,6 +76,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivPicture"
@@ -113,6 +90,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivPicture"
@@ -123,6 +103,9 @@
             android:id="@+id/ivEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
             android:contentDescription="@string/email"
             android:src="@drawable/ic_email"
             app:layout_constraintBottom_toBottomOf="@id/tvEmail"
@@ -137,6 +120,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"

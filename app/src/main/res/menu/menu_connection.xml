@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022
+  ~ David de Andrés and Juan Carlos Ruiz
+  ~ Development of apps for mobile devices
+  ~ Universitat Politècnica de València
+  -->
+<!--Menu for selecting the HTTP connection library-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Selects Retrofit-->
+    <item
+        android:id="@+id/mRetrofit"
+        android:title="@string/retrofit"
+        app:showAsAction="ifRoom|withText" />
+    <!--Selects UrlConnection-->
+    <item
+        android:id="@+id/mUrlConnection"
+        android:title="@string/url_connection"
+        app:showAsAction="ifRoom|withText" />
+</menu>
