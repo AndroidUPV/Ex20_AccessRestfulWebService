@@ -7,11 +7,12 @@
 
 package com.example.ex20_accessrestfulwebservice.data.repositories
 
-import com.example.ex20_accessrestfulwebservice.data.datasources.PeopleRetrofitDataSourceImpl
-import com.example.ex20_accessrestfulwebservice.data.datasources.UrlConnectionPeopleDataSourceImpl
+import com.example.ex20_accessrestfulwebservice.data.datasources.PeopleDataSource
+import com.example.ex20_accessrestfulwebservice.di.PeopleInterfacesModule
 import com.example.ex20_accessrestfulwebservice.model.People
 import com.example.ex20_accessrestfulwebservice.utils.ConnectivityChecker
 import com.example.ex20_accessrestfulwebservice.utils.NoInternetException
+import javax.inject.Inject
 
 /**
  * Enumeration for the available HTTP connection libraries.
@@ -22,24 +23,12 @@ enum class ConnectionLibrary { RETROFIT, HTTPS_URL_CONNECTION }
  * Repository for retrieving lists of randomly generated persons.
  * It implements the PeopleRepository interface and the Singleton pattern.
  */
-class PeopleRepositoryImpl private constructor(
-    private val connectivityChecker: ConnectivityChecker
+// @Inject enables Hilt to provide the required dependencies
+class PeopleRepositoryImpl @Inject constructor(
+    private val connectivityChecker: ConnectivityChecker,
+    @PeopleInterfacesModule.RetrofitImpl private val retrofitDataSource: PeopleDataSource,
+    @PeopleInterfacesModule.UrlConnectionImpl private val urlConnectionDataSource: PeopleDataSource
 ) : PeopleRepository {
-
-    // @Volatile and synchronized() ensure that this Singleton creation is thread-safe
-    companion object {
-        @Volatile
-        private lateinit var instance: PeopleRepositoryImpl
-
-        fun getInstance(connectivityChecker: ConnectivityChecker): PeopleRepositoryImpl {
-            synchronized(this) {
-                if (!::instance.isInitialized) {
-                    instance = PeopleRepositoryImpl(connectivityChecker)
-                }
-                return instance
-            }
-        }
-    }
 
     /**
      * Returns a list of 10 randomly generated persons.
@@ -50,9 +39,9 @@ class PeopleRepositoryImpl private constructor(
             // Return the list of people from the data source if there is Internet connection
             when (dataSource) {
                 ConnectionLibrary.RETROFIT ->
-                    PeopleRetrofitDataSourceImpl.getPeople()
+                    retrofitDataSource.getPeople()
                 ConnectionLibrary.HTTPS_URL_CONNECTION ->
-                    UrlConnectionPeopleDataSourceImpl.getPeople()
+                    urlConnectionDataSource.getPeople()
             }
         } else {
             // Return a failed result if there is no Internet connection

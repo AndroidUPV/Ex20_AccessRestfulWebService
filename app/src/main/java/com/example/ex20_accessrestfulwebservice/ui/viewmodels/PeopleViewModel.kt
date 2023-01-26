@@ -23,7 +23,7 @@ import javax.inject.Inject
  */
 // The Hilt annotation @HiltEntryPoint is required to receive dependencies from its parent class
 @HiltViewModel
-// The Hilt annotation @Inject determines how to provide instances of this class
+// @Inject enables Hilt to provide the required dependencies
 class PeopleViewModel @Inject constructor(
     private val peopleRepository: PeopleRepository
 ) : ViewModel() {

@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         // Set the activity content to the root element of the generated view
         setContentView(binding.root)
-
         // Make the custom ToolBar the ActionBar
         setSupportActionBar(binding.toolbar)
         // Get an instance of the NavController.

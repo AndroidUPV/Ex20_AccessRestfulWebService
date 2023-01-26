@@ -7,11 +7,9 @@
 
 package com.example.ex20_accessrestfulwebservice.data.datasources
 
-import android.net.Uri
 import com.example.ex20_accessrestfulwebservice.model.People
+import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonDataException
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okio.buffer
@@ -19,35 +17,18 @@ import okio.source
 import java.io.IOException
 import java.net.HttpURLConnection.HTTP_OK
 import java.net.URL
+import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 
 /**
  * Data source that provides access to the Random User generator API using UrlConnection.
  * It implements the PeopleDataSource interface and the Singleton pattern.
  */
-// Just by declaring object instead of class we have a Singleton. Only valid for empty constructors.
-object UrlConnectionPeopleDataSourceImpl : PeopleDataSource {
-
-    // URL to get 10 persons with random name, location, email address, phone number, and picture
-    // in json format, and excluding seed, result, page, and version data
-    private val url = URL(
-        Uri.Builder()
-            .scheme("https")
-            .authority("randomuser.me")
-            .appendPath("api")
-            .appendQueryParameter("results", "10")
-            .appendQueryParameter("inc", "name,location,email,cell,picture")
-            .appendQueryParameter("format", "json")
-            .appendQueryParameter("", "noinfo")
-            .build()
-            .toString()
-    )
-
-    // Moshi adapter to convert a People object from/to JSON
-    private val moshiAdapter = Moshi.Builder()
-        .addLast(KotlinJsonAdapterFactory())
-        .build()
-        .adapter(People::class.java)
+// @Inject enables Hilt to provide the required dependencies
+class PeopleUrlConnectionDataSourceImpl @Inject constructor(
+    private val url: URL,
+    private val moshiAdapter: JsonAdapter<People>
+) : PeopleDataSource {
 
     /**
      * Returns 10 randomly generated person using HttpsUrlConnection or
@@ -65,8 +46,6 @@ object UrlConnectionPeopleDataSourceImpl : PeopleDataSource {
                 connection.requestMethod = "GET"
                 // Expect an incoming result
                 connection.doInput = true
-                // Establish the connection
-                connection.connect()
                 // If the request was successful (HTTP 200) then
                 // transform the JSON response in a People class using the Moshi adapter
                 result = if (connection.responseCode == HTTP_OK) {
