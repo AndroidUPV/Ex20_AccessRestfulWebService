@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 /**
  * Data source that provides access to the Random User generator API using Retrofit.
- * It implements the PeopleDataSource interface and the Singleton pattern.
+ * It implements the PeopleDataSource interface.
  */
 // @Inject enables Hilt to provide the required dependencies
 class PeopleRetrofitDataSourceImpl @Inject constructor(retrofit: Retrofit) :

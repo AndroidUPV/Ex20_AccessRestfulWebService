@@ -22,7 +22,7 @@ import javax.net.ssl.HttpsURLConnection
 
 /**
  * Data source that provides access to the Random User generator API using UrlConnection.
- * It implements the PeopleDataSource interface and the Singleton pattern.
+ * It implements the PeopleDataSource interface.
  */
 // @Inject enables Hilt to provide the required dependencies
 class PeopleUrlConnectionDataSourceImpl @Inject constructor(

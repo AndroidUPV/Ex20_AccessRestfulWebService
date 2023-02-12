@@ -8,7 +8,7 @@
 package com.example.ex20_accessrestfulwebservice.data.repositories
 
 import com.example.ex20_accessrestfulwebservice.data.datasources.PeopleDataSource
-import com.example.ex20_accessrestfulwebservice.di.PeopleInterfacesModule
+import com.example.ex20_accessrestfulwebservice.di.PeopleBinderModule
 import com.example.ex20_accessrestfulwebservice.model.People
 import com.example.ex20_accessrestfulwebservice.utils.ConnectivityChecker
 import com.example.ex20_accessrestfulwebservice.utils.NoInternetException
@@ -21,13 +21,13 @@ enum class ConnectionLibrary { RETROFIT, HTTPS_URL_CONNECTION }
 
 /**
  * Repository for retrieving lists of randomly generated persons.
- * It implements the PeopleRepository interface and the Singleton pattern.
+ * It implements the PeopleRepository interface.
  */
 // @Inject enables Hilt to provide the required dependencies
 class PeopleRepositoryImpl @Inject constructor(
     private val connectivityChecker: ConnectivityChecker,
-    @PeopleInterfacesModule.RetrofitImpl private val retrofitDataSource: PeopleDataSource,
-    @PeopleInterfacesModule.UrlConnectionImpl private val urlConnectionDataSource: PeopleDataSource
+    @PeopleBinderModule.RetrofitImpl private val retrofitDataSource: PeopleDataSource,
+    @PeopleBinderModule.UrlConnectionImpl private val urlConnectionDataSource: PeopleDataSource
 ) : PeopleRepository {
 
     /**

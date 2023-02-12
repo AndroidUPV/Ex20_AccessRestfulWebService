@@ -24,7 +24,7 @@ import javax.inject.Qualifier
 @Module
 // The Hilt annotation @SingletonComponent creates and destroy instances following the lifecycle of the Application
 @InstallIn(SingletonComponent::class)
-abstract class PeopleInterfacesModule {
+abstract class PeopleBinderModule {
 
     // New annotations defined to distinguish between different implementation of the same interface
     @Qualifier

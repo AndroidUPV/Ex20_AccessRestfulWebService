@@ -29,7 +29,7 @@ import java.net.URL
 @Module
 // The Hilt annotation @SingletonComponent creates and destroy instances following the lifecycle of the Application
 @InstallIn(SingletonComponent::class)
-class PeopleModule {
+class PeopleProviderModule {
 
     /**
      * Provides an instance of Retrofit for the selected web service.

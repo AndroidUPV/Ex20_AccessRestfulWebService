@@ -35,7 +35,7 @@ import java.io.IOException
 @AndroidEntryPoint
 class PeopleFragment : Fragment(R.layout.fragment_people), MenuProvider {
 
-    // Reference to a ViewModel shared between Fragments
+    // Reference to the ViewModel
     private val viewModel: PeopleViewModel by viewModels()
 
     // Backing property to resource binding
@@ -121,4 +121,8 @@ class PeopleFragment : Fragment(R.layout.fragment_people), MenuProvider {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
