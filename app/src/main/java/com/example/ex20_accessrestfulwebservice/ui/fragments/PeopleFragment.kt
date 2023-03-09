@@ -123,6 +123,7 @@ class PeopleFragment : Fragment(R.layout.fragment_people), MenuProvider {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // Clear resources to make them eligible for garbage collection
         _binding = null
     }
 }
