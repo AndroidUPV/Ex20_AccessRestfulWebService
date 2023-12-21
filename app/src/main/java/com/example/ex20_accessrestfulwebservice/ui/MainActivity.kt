@@ -9,7 +9,7 @@
  * (See accompanying file LICENSE.txt)
  */
 
-package com.example.ex20_accessrestfulwebservice.ui.people
+package com.example.ex20_accessrestfulwebservice.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
