@@ -9,13 +9,13 @@
  * (See accompanying file LICENSE.txt)
  */
 
-package com.example.ex20_accessrestfulwebservice.model
+package com.example.ex20_accessrestfulwebservice.data.model
 
 import com.squareup.moshi.JsonClass
 
 /**
- * A coordinates object consisting of its latitude and longitude.
+ * A timezone object consisting of its offset and description.
  */
 // The Moshi annotation @JsonClass generates an adapter to convert this class to/from JSON
 @JsonClass(generateAdapter = true)
-data class Coordinates(val latitude: Float, val longitude: Float)
+data class TimezoneDto(val offset: String, val description: String)

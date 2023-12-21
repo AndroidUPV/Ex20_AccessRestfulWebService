@@ -11,7 +11,7 @@
 
 package com.example.ex20_accessrestfulwebservice.data.people
 
-import com.example.ex20_accessrestfulwebservice.model.People
+import com.example.ex20_accessrestfulwebservice.data.model.PeopleDto
 
 /**
  * Interface declaring the methods that the DataSource exposes to Repositories.
@@ -20,5 +20,5 @@ interface PeopleDataSource {
     /**
      * Gets a list of 10 randomly generated persons.
      */
-    suspend fun getPeople(): Result<People>
+    suspend fun getPeople(): Result<PeopleDto>
 }

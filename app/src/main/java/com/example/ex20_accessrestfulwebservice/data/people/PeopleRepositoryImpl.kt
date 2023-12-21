@@ -11,6 +11,7 @@
 
 package com.example.ex20_accessrestfulwebservice.data.people
 
+import com.example.ex20_accessrestfulwebservice.data.model.toDomain
 import com.example.ex20_accessrestfulwebservice.di.PeopleBinderModule
 import com.example.ex20_accessrestfulwebservice.model.People
 import com.example.ex20_accessrestfulwebservice.utils.ConnectivityChecker
@@ -42,9 +43,10 @@ class PeopleRepositoryImpl @Inject constructor(
             // Return the list of people from the data source if there is Internet connection
             when (dataSource) {
                 ConnectionLibrary.RETROFIT ->
-                    retrofitDataSource.getPeople()
+                    retrofitDataSource.getPeople().toDomain()
+
                 ConnectionLibrary.HTTPS_URL_CONNECTION ->
-                    urlConnectionDataSource.getPeople()
+                    urlConnectionDataSource.getPeople().toDomain()
             }
         } else {
             // Return a failed result if there is no Internet connection

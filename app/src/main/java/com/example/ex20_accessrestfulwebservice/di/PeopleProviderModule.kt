@@ -13,7 +13,7 @@ package com.example.ex20_accessrestfulwebservice.di
 
 import android.content.Context
 import android.net.Uri
-import com.example.ex20_accessrestfulwebservice.model.People
+import com.example.ex20_accessrestfulwebservice.data.model.PeopleDto
 import com.example.ex20_accessrestfulwebservice.utils.ConnectivityChecker
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -69,9 +69,9 @@ class PeopleProviderModule {
      * Provides an instance of a Moshi adapter to convert a People object from/to JSON.
      */
     @Provides
-    fun provideMoshiAdapter(): JsonAdapter<People> = Moshi.Builder()
+    fun provideMoshiAdapter(): JsonAdapter<PeopleDto> = Moshi.Builder()
         .build()
-        .adapter(People::class.java)
+        .adapter(PeopleDto::class.java)
 
     /**
      * Provides an instance of a ConnectivityChecker.

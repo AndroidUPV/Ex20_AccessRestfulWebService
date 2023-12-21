@@ -9,7 +9,7 @@
  * (See accompanying file LICENSE.txt)
  */
 
-package com.example.ex20_accessrestfulwebservice.model
+package com.example.ex20_accessrestfulwebservice.data.model
 
 import com.squareup.moshi.JsonClass
 
@@ -18,4 +18,4 @@ import com.squareup.moshi.JsonClass
  */
 // The Moshi annotation @JsonClass generates an adapter to convert this class to/from JSON
 @JsonClass(generateAdapter = true)
-data class Street(val number: Int, val name: String)
+data class StreetDto(val number: Int, val name: String)

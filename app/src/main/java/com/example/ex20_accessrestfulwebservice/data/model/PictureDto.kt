@@ -9,21 +9,13 @@
  * (See accompanying file LICENSE.txt)
  */
 
-package com.example.ex20_accessrestfulwebservice.model
+package com.example.ex20_accessrestfulwebservice.data.model
 
 import com.squareup.moshi.JsonClass
 
 /**
- * A house location object consisting of a street object, city name, state name, country name, postal code, coordinates object and timezone object.
+ * A picture object consisting of the URL to access the person's picture in large, medium, and thumbnail sizes.
  */
 // The Moshi annotation @JsonClass generates an adapter to convert this class to/from JSON
 @JsonClass(generateAdapter = true)
-data class Location(
-    val street: Street,
-    val city: String,
-    val state: String,
-    val country: String,
-    val postcode: String,
-    val coordinates: Coordinates,
-    val timezone: Timezone
-)
+data class PictureDto(val large: String, val medium: String, val thumbnail: String)

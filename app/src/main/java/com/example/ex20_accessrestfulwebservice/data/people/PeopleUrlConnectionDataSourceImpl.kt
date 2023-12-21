@@ -11,7 +11,7 @@
 
 package com.example.ex20_accessrestfulwebservice.data.people
 
-import com.example.ex20_accessrestfulwebservice.model.People
+import com.example.ex20_accessrestfulwebservice.data.model.PeopleDto
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonDataException
 import kotlinx.coroutines.Dispatchers
@@ -31,17 +31,17 @@ import javax.net.ssl.HttpsURLConnection
 // @Inject enables Hilt to provide the required dependencies
 class PeopleUrlConnectionDataSourceImpl @Inject constructor(
     private val url: URL,
-    private val moshiAdapter: JsonAdapter<People>
+    private val moshiAdapter: JsonAdapter<PeopleDto>
 ) : PeopleDataSource {
 
     /**
      * Returns 10 randomly generated person using HttpsUrlConnection or
      * IOException if something goes wrong.
      */
-    override suspend fun getPeople(): Result<People> =
+    override suspend fun getPeople(): Result<PeopleDto> =
         // Execute the operation in an IO thread (this is main-safe)
         withContext(Dispatchers.IO) {
-            var result: Result<People>
+            var result: Result<PeopleDto>
             lateinit var connection: HttpsURLConnection
             try {
                 // Create a new instance of UrlConnection

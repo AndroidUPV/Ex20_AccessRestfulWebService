@@ -11,7 +11,7 @@
 
 package com.example.ex20_accessrestfulwebservice.data.people
 
-import com.example.ex20_accessrestfulwebservice.model.People
+import com.example.ex20_accessrestfulwebservice.data.model.PeopleDto
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.GET
@@ -42,18 +42,18 @@ class PeopleRetrofitDataSourceImpl @Inject constructor(retrofit: Retrofit) :
         // The retrofit annotation @GET provides the query to be used with the base URL
         // The Retrofit annotation @Query enables dynamic parameters in the query
         @GET("api?inc=name,location,email,cell,picture&noinfo&format=json")
-        suspend fun getPeople(@Query("results") number: Int): Response<People>
+        suspend fun getPeople(@Query("results") number: Int): Response<PeopleDto>
     }
 
     /**
      * Returns 10 randomly generated person using Retrofit or
      * IOException if something goes wrong.
      */
-    override suspend fun getPeople(): Result<People> {
+    override suspend fun getPeople(): Result<PeopleDto> {
         // Suspend functions for Retrofit interfaces are main-safe
         val people = retrofitPeopleService.getPeople(10)
         return if (people.isSuccessful) {
-            Result.success(people.body() as People)
+            Result.success(people.body() as PeopleDto)
         } else {
             Result.failure(IOException(people.errorBody().toString()))
         }

@@ -9,13 +9,21 @@
  * (See accompanying file LICENSE.txt)
  */
 
-package com.example.ex20_accessrestfulwebservice.model
+package com.example.ex20_accessrestfulwebservice.data.model
 
 import com.squareup.moshi.JsonClass
 
 /**
- * A person's name object consisting of the title to be used, and his/her first and last name.
+ * A house location object consisting of a street object, city name, state name, country name, postal code, coordinates object and timezone object.
  */
 // The Moshi annotation @JsonClass generates an adapter to convert this class to/from JSON
 @JsonClass(generateAdapter = true)
-data class Name(val title: String, val first: String, val last: String)
+data class LocationDto(
+    val street: StreetDto,
+    val city: String,
+    val state: String,
+    val country: String,
+    val postcode: String,
+    val coordinates: CoordinatesDto,
+    val timezone: TimezoneDto
+)

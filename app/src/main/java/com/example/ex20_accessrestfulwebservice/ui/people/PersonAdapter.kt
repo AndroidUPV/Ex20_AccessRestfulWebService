@@ -32,7 +32,7 @@ class PersonAdapter : ListAdapter<Person, PersonAdapter.PersonViewHolder>(Person
          * (let's assume that their name and phone number can identify them).
          */
         override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean =
-            oldItem.name.first == newItem.name.first && oldItem.name.last == newItem.name.last && oldItem.cell == newItem.cell
+            oldItem.name == newItem.name && oldItem.phone == newItem.phone
 
         /**
          * Determines whether two persons have the same data.
@@ -53,31 +53,17 @@ class PersonAdapter : ListAdapter<Person, PersonAdapter.PersonViewHolder>(Person
         fun bind(person: Person) {
             binding.apply {
 
-                tvName.text = tvName.context.getString(
-                    R.string.title_first_second,
-                    person.name.title,
-                    person.name.first,
-                    person.name.last.uppercase()
-                )
-                tvAddress.text = tvAddress.context.getString(
-                    R.string.address_number_name,
-                    person.location.street.number,
-                    person.location.street.name
-                )
-                tvCity.text = tvCity.context.getString(
-                    R.string.address_city_state_zipcode,
-                    person.location.city,
-                    person.location.state,
-                    person.location.postcode
-                )
-                tvCountry.text = person.location.country
+                tvName.text = person.name
+                tvAddress.text = person.address
+                tvCity.text = person.city
+                tvCountry.text = person.country
                 tvEmail.text = person.email
-                tvPhone.text = person.cell
+                tvPhone.text = person.phone
                 // Glide gets an image from Internet using a background thread and
                 // updates the selected View when available
                 Glide
                     .with(ivPicture)
-                    .load(person.picture.large)
+                    .load(person.picture)
                     .circleCrop()
                     .placeholder(R.drawable.unknown_person)
                     .into(ivPicture)

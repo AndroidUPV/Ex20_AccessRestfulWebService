@@ -9,13 +9,13 @@
  * (See accompanying file LICENSE.txt)
  */
 
-package com.example.ex20_accessrestfulwebservice.model
+package com.example.ex20_accessrestfulwebservice.data.model
 
 import com.squareup.moshi.JsonClass
 
 /**
- * A picture object consisting of the URL to access the person's picture in large, medium, and thumbnail sizes.
+ * A coordinates object consisting of its latitude and longitude.
  */
 // The Moshi annotation @JsonClass generates an adapter to convert this class to/from JSON
 @JsonClass(generateAdapter = true)
-data class Picture(val large: String, val medium: String, val thumbnail: String)
+data class CoordinatesDto(val latitude: Float, val longitude: Float)
