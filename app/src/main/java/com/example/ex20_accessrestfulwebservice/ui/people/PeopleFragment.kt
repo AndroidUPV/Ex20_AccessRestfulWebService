@@ -1,11 +1,15 @@
 /*
- * Copyright (c) 2022
- * David de Andrés and Juan Carlos Ruiz
- * Development of apps for mobile devices
- * Universitat Politècnica de València
+ * Copyright (c) 2022-2023 Universitat Politècnica de València
+ * Authors: David de Andrés and Juan Carlos Ruiz
+ *          Fault-Tolerant Systems
+ *          Instituto ITACA
+ *          Universitat Politècnica de València
+ *
+ * Distributed under MIT license
+ * (See accompanying file LICENSE.txt)
  */
 
-package com.example.ex20_accessrestfulwebservice.ui.fragments
+package com.example.ex20_accessrestfulwebservice.ui.people
 
 import android.os.Bundle
 import android.view.Menu
@@ -17,10 +21,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import com.example.ex20_accessrestfulwebservice.R
-import com.example.ex20_accessrestfulwebservice.data.repositories.ConnectionLibrary
+import com.example.ex20_accessrestfulwebservice.data.people.ConnectionLibrary
 import com.example.ex20_accessrestfulwebservice.databinding.FragmentPeopleBinding
-import com.example.ex20_accessrestfulwebservice.ui.adapters.PersonAdapter
-import com.example.ex20_accessrestfulwebservice.ui.viewmodels.PeopleViewModel
 import com.example.ex20_accessrestfulwebservice.utils.NoInternetException
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint

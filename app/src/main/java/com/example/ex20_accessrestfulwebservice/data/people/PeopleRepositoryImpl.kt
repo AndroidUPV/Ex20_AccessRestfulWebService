@@ -1,13 +1,16 @@
 /*
- * Copyright (c) 2022
- * David de Andrés and Juan Carlos Ruiz
- * Development of apps for mobile devices
- * Universitat Politècnica de València
+ * Copyright (c) 2022-2023 Universitat Politècnica de València
+ * Authors: David de Andrés and Juan Carlos Ruiz
+ *          Fault-Tolerant Systems
+ *          Instituto ITACA
+ *          Universitat Politècnica de València
+ *
+ * Distributed under MIT license
+ * (See accompanying file LICENSE.txt)
  */
 
-package com.example.ex20_accessrestfulwebservice.data.repositories
+package com.example.ex20_accessrestfulwebservice.data.people
 
-import com.example.ex20_accessrestfulwebservice.data.datasources.PeopleDataSource
 import com.example.ex20_accessrestfulwebservice.di.PeopleBinderModule
 import com.example.ex20_accessrestfulwebservice.model.People
 import com.example.ex20_accessrestfulwebservice.utils.ConnectivityChecker
