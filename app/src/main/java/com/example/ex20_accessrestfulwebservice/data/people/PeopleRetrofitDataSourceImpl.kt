@@ -24,8 +24,9 @@ import javax.inject.Inject
  * It implements the PeopleDataSource interface.
  */
 // @Inject enables Hilt to provide the required dependencies
-class PeopleRetrofitDataSourceImpl @Inject constructor(retrofit: Retrofit) :
-    PeopleDataSource {
+class PeopleRetrofitDataSourceImpl @Inject constructor(
+    retrofit: Retrofit
+) : PeopleDataSource {
 
     // Creates the implementation of the API endpoint define by the interface
     private val retrofitPeopleService = retrofit.create(PeopleRetrofitInterface::class.java)

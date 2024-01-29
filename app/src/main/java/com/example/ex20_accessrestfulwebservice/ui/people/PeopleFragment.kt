@@ -20,12 +20,15 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.ex20_accessrestfulwebservice.R
 import com.example.ex20_accessrestfulwebservice.data.people.ConnectionLibrary
 import com.example.ex20_accessrestfulwebservice.databinding.FragmentPeopleBinding
 import com.example.ex20_accessrestfulwebservice.utils.NoInternetException
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.io.IOException
 
 /**
@@ -59,32 +62,47 @@ class PeopleFragment : Fragment(R.layout.fragment_people), MenuProvider {
         val adapter = PersonAdapter()
         binding.recyclerView.adapter = adapter
 
-        // Submit a new list to be displayed whenever the list of persons changes
-        viewModel.people.observe(viewLifecycleOwner) { people ->
-            adapter.submitList(people.people)
-        }
-        // Display a message error when there is some problem retrieving the information from the web service
-        viewModel.error.observe(viewLifecycleOwner) { error ->
-            if (error != null) {
-                val message = when (error) {
-                    is NoInternetException -> R.string.no_internet
-                    is IOException -> R.string.network_error
-                    else -> R.string.unknown_error
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Submit a new list to be displayed whenever the list of persons changes
+                viewModel.people.collect { people ->
+                    adapter.submitList(people.people)
                 }
-                Snackbar.make(binding.recyclerView, message, Snackbar.LENGTH_SHORT)
-                    .show()
-                viewModel.resetError()
             }
         }
-        // Update the action elements according to the selected connection library
-        viewModel.connectionLibrary.observe(viewLifecycleOwner) {
-            requireActivity().invalidateMenu()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Display a message error when there is some problem retrieving the information from the web service
+                viewModel.error.collect { error ->
+                    error?.let {
+                        val message = when (it) {
+                            is NoInternetException -> R.string.no_internet
+                            is IOException -> R.string.network_error
+                            else -> R.string.unknown_error
+                        }
+                        Snackbar.make(binding.recyclerView, message, Snackbar.LENGTH_SHORT)
+                            .show()
+                        viewModel.resetError()
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Update the action elements according to the selected connection library
+                viewModel.connectionLibrary.collect {
+                    requireActivity().invalidateMenu()
+                }
+            }
         }
 
         // Get more people to display in the list
         binding.fabMorePeople.setOnClickListener {
             viewModel.getMorePeople()
         }
+
     }
 
     // Populates the ActionBar with action elements

@@ -11,14 +11,15 @@
 
 package com.example.ex20_accessrestfulwebservice.ui.people
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ex20_accessrestfulwebservice.data.people.ConnectionLibrary
 import com.example.ex20_accessrestfulwebservice.data.people.PeopleRepository
 import com.example.ex20_accessrestfulwebservice.model.People
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,23 +33,23 @@ class PeopleViewModel @Inject constructor(
     private val peopleRepository: PeopleRepository
 ) : ViewModel() {
 
-    // Backing property for the list of persons (default empty)
-    private val _people = MutableLiveData<People>()
+    // Backing property for the list of persons
+    private val _people = MutableStateFlow(People(listOf()))
 
     // List of persons
-    val people: LiveData<People> = _people
+    val people = _people.asStateFlow()
 
     // Backing property for the error to be notified (default null)
-    private val _error = MutableLiveData<Throwable?>(null)
+    private val _error = MutableStateFlow<Throwable?>(null)
 
     // Error to be notified
-    val error: LiveData<Throwable?> = _error
+    val error = _error.asStateFlow()
 
-    // Backing property for the connection library ti be used (default Retrofit)
-    private val _connectionLibrary = MutableLiveData(ConnectionLibrary.RETROFIT)
+    // Backing property for the connection library to be used (default Retrofit)
+    private val _connectionLibrary = MutableStateFlow(ConnectionLibrary.RETROFIT)
 
     // Connection library to be used
-    val connectionLibrary: LiveData<ConnectionLibrary> = _connectionLibrary
+    val connectionLibrary = _connectionLibrary.asStateFlow()
 
     // Get a list of 10 random people when creating the ViewModel
     init {
@@ -64,13 +65,14 @@ class PeopleViewModel @Inject constructor(
         viewModelScope.launch {
             peopleRepository
                 // Get the result from the repository
-                .getPeople(_connectionLibrary.value ?: ConnectionLibrary.RETROFIT)
+                .getPeople(_connectionLibrary.value)
                 // Check the result
                 .fold(
                     onSuccess = { result ->
                         // Update the list of persons if the operation was successful
-                        _people.value =
-                            People(_people.value?.people?.plus(result.people) ?: listOf())
+                        _people.update { currentPeople ->
+                            People(currentPeople.people.plus(result.people))
+                        }
                     },
                     onFailure = { throwable ->
                         // Update the error to be notified to the user in there was any problem
@@ -88,16 +90,20 @@ class PeopleViewModel @Inject constructor(
         viewModelScope.launch {
             peopleRepository
                 // Get the result from the repository
-                .getPeople(_connectionLibrary.value ?: ConnectionLibrary.RETROFIT)
+                .getPeople(_connectionLibrary.value)
                 // Check the result
                 .fold(
-                    onSuccess = { people ->
-                        // Update the list of persons if the operation was successful
-                        _people.value = people
+                    onSuccess = { newPeople ->
+                        _people.update {
+                            // Update the list of persons if the operation was successful
+                            newPeople
+                        }
                     },
                     onFailure = { throwable ->
-                        // Update the error to be notified to the user in there was any problem
-                        _error.value = throwable
+                        _error.update {
+                            // Update the error to be notified to the user in there was any problem
+                            throwable
+                        }
                     }
                 )
         }
