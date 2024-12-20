@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Universitat Politècnica de València
+ * Copyright (c) 2022-2024 Universitat Politècnica de València
  * Authors: David de Andrés and Juan Carlos Ruiz
  *          Fault-Tolerant Systems
  *          Instituto ITACA
@@ -12,6 +12,7 @@
 package com.example.ex20_accessrestfulwebservice.ui
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // Get the automatically generated view binding for the layout resource
         val binding = ActivityMainBinding.inflate(layoutInflater)
+        // Enable edge-to-edge display
+        enableEdgeToEdge()
         // Set the activity content to the root element of the generated view
         setContentView(binding.root)
         // Make the custom ToolBar the ActionBar
